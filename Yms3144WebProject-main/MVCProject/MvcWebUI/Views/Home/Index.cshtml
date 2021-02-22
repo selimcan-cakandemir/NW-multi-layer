@@ -1,0 +1,35 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    img {
+        width: 150px;
+        height: 250px;
+        
+    }
+
+
+
+</style>
+
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-3">
+                <div class="card mt-3">
+                    <img src="~/Images/Phones/@product.ImagePath" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h7 class="card-title">@product.ProductName</h7>
+                        <p class="card-text">@product.UnitPrice ₺</p>
+                        @Html.ActionLink("Sepete Ekle", "AddToCart", new { id = product.ID }, new { @class = "btn btn-sm btn-primary" })
+                    </div>                  
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

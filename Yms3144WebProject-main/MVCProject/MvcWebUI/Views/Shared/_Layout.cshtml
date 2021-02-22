@@ -1,0 +1,74 @@
+﻿@{
+    DataAccess.Entities.Cart cart = Session["cart"] as DataAccess.Entities.Cart;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "navbar-brand" })</li>
+                <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "navbar-brand" })</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "navbar-brand" })</li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Search</button>
+            </form>
+        </div>
+        <ul class="navbar-nav my-2 my-lg-0">
+            @if (cart != null)
+            {
+                <li>
+                    <a class="btn btn-primary" href="~/Cart/Index">
+                        My Cart <span class="badge badge-light">
+                            @cart.myCart.Count.ToString()
+                        </span>
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a class="btn btn-primary" href="~/Cart/Index">
+                        My Cart <span class="badge badge-light">0</span>
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+            }
+        </ul>
+
+
+
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>
